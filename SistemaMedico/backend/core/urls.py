@@ -19,13 +19,18 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from usuarios.urls import router as usuarios_router
+from customAuth.urls import urlpatterns as auth_urls
 
 root_router = DefaultRouter()
 root_router.registry.extend(usuarios_router.registry)
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(root_router.urls)),
+    path('auth/', include(auth_urls)),
+    
 ]
 
 
