@@ -1,0 +1,17 @@
+{
+  "name": "sistemamedico",
+  "version": "1.0.0",
+  "description": "sistema de gestion de historia medica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "indroic",
+  "license": "ISC",
+  "dependencies": {
+    "@s-ui/mono": "^2.45.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
