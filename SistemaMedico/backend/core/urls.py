@@ -20,9 +20,13 @@ from rest_framework.routers import DefaultRouter
 
 from usuarios.urls import router as usuarios_router
 from customAuth.urls import urlpatterns as auth_urls
+from examenes.urls import router as examenes_router
+from medicos.urls import router as medicos_router
 
 root_router = DefaultRouter()
 root_router.registry.extend(usuarios_router.registry)
+root_router.registry.extend(examenes_router.registry)
+root_router.registry.extend(medicos_router.registry)
 
 
 

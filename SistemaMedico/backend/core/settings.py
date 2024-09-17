@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
+    'django_seeding',
+    'phonenumber_field',
     
     'core',
     'customAuth',
@@ -139,3 +142,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+PHONENUMBER_DEFAULT_REGION = 'VE'

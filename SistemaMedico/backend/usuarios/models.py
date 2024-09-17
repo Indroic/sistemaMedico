@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
-    id = models.UUIDField(default=uuid.uuid1(), primary_key=True)
+    id = models.UUIDField(default=uuid.uuid4(), primary_key=True)
     
     ci = models.IntegerField(unique=True, blank=False, null=False)
     
