@@ -58,4 +58,4 @@ class Examen(models.Model):
     )
     
     def __str__(self):
-        return self.archivo + " - " + self.categoria.categoria + " - " + self.agregado_por.username
+        return self.categoria.categoria + " - " + self.agregado_por.username + " - " + str(self.create_at)
