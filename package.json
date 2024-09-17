@@ -4,7 +4,10 @@
   "description": "sistema de gestion de historia medica",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-backend": "cd SistemaMedico/backend & python manage.py runserver",
+    "migrate-db": "cd SistemaMedico/backend & python manage.py makemigrations & python manage.py migrate",
+    "create-superuser": "cd SistemaMedico/backend & python manage.py createsuperuser",
+    "install-dependencies": "pip install -r requirements.txt"
   },
   "author": "indroic",
   "license": "ISC",
