@@ -159,8 +159,14 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Bienvenido al sistema medico",
     "hide_apps": ["django_seeding", "authtoken"],
     "related_modal_active": True,
-    "user_avatar": "avatar"
+    "user_avatar": "avatar",
+    "show_ui_builder": True
 
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "simplex",
+    "dark_mode_theme": "darkly",
 }
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
