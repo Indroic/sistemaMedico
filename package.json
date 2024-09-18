@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev-backend": "cd SistemaMedico/backend & python manage.py runserver",
+    "dev-frontend": "cd SistemaMedico/sistema-medico-frontend & npm start",
+    "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
     "migrate-db": "cd SistemaMedico/backend & python manage.py makemigrations & python manage.py migrate",
     "create-superuser": "cd SistemaMedico/backend & python manage.py createsuperuser",
-    "install-dependencies": "pip install -r requeriments.txt",
+    "install-dependencies": "pip install -r requeriments.txt & cd SistemaMedico/sistema-medico-frontend/ & npm install",
     "seed-db": "cd SistemaMedico/backend & python manage.py seed"
   },
   "author": "indroic",
