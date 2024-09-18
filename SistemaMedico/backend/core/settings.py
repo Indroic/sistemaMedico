@@ -25,18 +25,20 @@ SECRET_KEY = 'django-insecure-z#f1q0a8vhfomzm@v$2y^s-_1zw$z!dy@3hjbf+7c4wp*&%d=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     
     'rest_framework',
     'rest_framework.authtoken',
@@ -115,13 +117,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Caracas'
 
 USE_I18N = True
 
 USE_TZ = True
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = Path(BASE_DIR / 'media')
 
 
 # Static files (CSS, JavaScript, Images)
@@ -144,3 +150,17 @@ REST_FRAMEWORK = {
 }
 
 PHONENUMBER_DEFAULT_REGION = 'VE'
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Sistema Medico",
+    "site_header": "Sistema Medico",
+    "site_brand": "Sistema Medico",
+    "welcome_sign": "Bienvenido al sistema medico",
+    "hide_apps": ["django_seeding", "authtoken"],
+    "related_modal_active": True,
+    "user_avatar": "avatar"
+
+}
+
+X_FRAME_OPTIONS = "SAMEORIGIN"

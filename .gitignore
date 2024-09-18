@@ -3,3 +3,5 @@ node_modules
 *.pyc
 
 *.sqlite3
+
+SistemaMedico/backend/media
