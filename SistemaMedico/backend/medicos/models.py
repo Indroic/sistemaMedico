@@ -2,6 +2,8 @@ import uuid
 
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils.html import format_html
+from django.urls import reverse
 
 from usuarios.models import Usuario
 

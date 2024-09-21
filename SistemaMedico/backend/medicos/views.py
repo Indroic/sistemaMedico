@@ -2,8 +2,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .serializers import MedicoSerializer
-from .models import Medico
+from .serializers import MedicoSerializer, EspecialidadSerializer
+from .models import Medico, Especialidad
 
 
 class MedicoViewSet(ModelViewSet):
@@ -17,3 +17,7 @@ class MedicoViewSet(ModelViewSet):
         
         return Response({"medicos": MedicoSerializer(medicos, many=True).data})
     
+
+class EspecialidadViewSet(ModelViewSet):
+    queryset = Especialidad.objects.all()
+    serializer_class = EspecialidadSerializer

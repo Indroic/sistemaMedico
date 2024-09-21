@@ -2,6 +2,8 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django_resized import ResizedImageField
+from django.urls import reverse
+from django.utils.html import format_html
 
 def generar_nombre(instance, filename):
     """
@@ -24,21 +26,19 @@ def generar_nombre(instance, filename):
 class Usuario(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, blank=False, null=False)
     
-    ci = models.IntegerField(unique=True, blank=False, null=False, verbose_name="Cédula de Identidad")
+    ci = models.IntegerField(unique=True, blank=True, null=True, verbose_name="Cédula de Identidad")
     
-    first_name = models.CharField(max_length=255, blank=False, null=False, verbose_name="Primer Nombre")
+    first_name = models.CharField(max_length=255, blank=True, null=True, verbose_name="Primer Nombre")
     
-    last_name = models.CharField(max_length=255, blank=False, null=False, verbose_name="Primer Apellido")
+    last_name = models.CharField(max_length=255, blank=True, null=True, verbose_name="Primer Apellido")
     
-    email = models.EmailField(unique=True, blank=False, null=False, verbose_name="Correo Electronico")
-    
-    password = models.CharField(max_length=255, blank=False, null=False, verbose_name="Contraseña")
+    email = models.EmailField(unique=True, blank=True, null=True, verbose_name="Correo Electronico")
     
     create_at = models.DateTimeField(auto_now=True, null=False, blank=False, verbose_name="Fecha de Creacion")
     
     update_at = models.DateTimeField(auto_now_add=True, null=False, blank=False, verbose_name="Fecha de Actualizacion")
     
-    avatar = ResizedImageField(upload_to=generar_nombre, null=True, blank=True, verbose_name="Avatar", size=[736, 736],  crop=['middle', 'center'], )
+    avatar = ResizedImageField(upload_to=generar_nombre, null=True, blank=True, verbose_name="Avatar", size=[736, 736],  crop=['middle', 'center'], unique=True, db_column="profile_image")
     
-    REQUIRED_FIELDS = ['ci', 'first_name', 'last_name', 'email']
-    
+
+

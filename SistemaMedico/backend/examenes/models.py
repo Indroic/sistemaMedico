@@ -54,6 +54,14 @@ class Examen(models.Model):
         # retorna el nuevo nombre
         return "examenes/{0}/{1}/{2}".format(usuario, extension.upper(), nuevo_nombre)
 
+    titulo = models.CharField(
+        max_length=250, 
+        blank=False, 
+        null=False, 
+        unique=False, 
+        verbose_name="Titulo"
+    )
+
     archivo = models.FileField(
         upload_to=upload_to,
         blank=False,
