@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-z#f1q0a8vhfomzm@v$2y^s-_1zw$z!dy@3hjbf+7c4wp*&%d=#"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -54,20 +54,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework.authtoken",
-    "django_filters",
-    "django_seeding",
     "phonenumber_field",
-    "tailwind",
     "core",
     "customAuth",
     "examenes",
     "medicos",
     "usuarios",
-    "tailwind_app",
     "corsheaders",
 ]
 
-TAILWIND_APP_NAME = "tailwind_app"
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -82,6 +78,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "core.urls"
+
+
+CSRF_COOKIE_SECURE = False
+CSRF_USE_SESSIONS = False
 
 TEMPLATES = [
     {
@@ -108,15 +108,23 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("PGDATABASE"),
-        "USER": os.getenv("PGUSER"),
-        "PASSWORD": os.getenv("PGPASSWORD"),
-        "HOST": os.getenv("PGHOST"),
-        "PORT": os.getenv("PGPORT", 5432),
+        "NAME": os.getenv("POSTGRES_DATABASE"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
         "OPTIONS": {
             "sslmode": "require",
         },
     }
+}
+
+STORAGES = {
+    "default": {"BACKEND": "core.storage.SupabaseStorage"},
+    
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }
 
 
@@ -165,15 +173,10 @@ STATIC_URL = "static/"
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
-STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -192,16 +195,10 @@ REST_FRAMEWORK = {
 PHONENUMBER_DEFAULT_REGION = "VE"
 
 
-JAZZMIN_SETTINGS = {
-    "site_title": "Sistema Medico",
-    "site_header": "Sistema Medico",
-    "site_brand": "Sistema Medico",
-    "welcome_sign": "Bienvenido al sistema medico",
-    "hide_apps": ["django_seeding", "authtoken"],
-    "related_modal_active": True,
-    "user_avatar": "avatar",
-    "show_ui_builder": True,
-}
+STATICFILES_DIRS = [
+    Path(BASE_DIR / "static" / "css" ),
+]
+
 
 UNFOLD = {
     "SITE_TITLE": "Sistema Medico",
@@ -287,12 +284,16 @@ UNFOLD = {
         },
     ],
     "STYLES": [
-        lambda request: "/static/styles.css",
+        lambda request: "/static/css/styles.css",
     ],
 }
 
-STATICFILES_DIRS = [
-    Path(BASE_DIR / "tailwind_app" / "static" / "css" / "dist"),
-]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1800000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1800000
+
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+

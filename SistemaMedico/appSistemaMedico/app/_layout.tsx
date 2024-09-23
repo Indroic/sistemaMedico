@@ -13,21 +13,22 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Stack } from "expo-router";
 
-
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.dark}>
-        <SafeAreaProvider>
-          <StatusBar style="light" />
+        <AuthProvider>
+          <SafeAreaProvider>
+            <StatusBar style="light" />
 
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-          </Stack>
-          
-        </SafeAreaProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" />
+            </Stack>
+          </SafeAreaProvider>
+        </AuthProvider>
       </ApplicationProvider>
     </>
   );
