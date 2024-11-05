@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -227,6 +227,28 @@ UNFOLD = {
                 ],
             },
             {
+                "title": "Personas",
+                "icon": "people",
+                "separatror": True,
+                "collapsible": True,
+                "permission": lambda request: request.user.is_superuser,
+                "items": [
+                    
+                    {
+                        "title": "Generos",
+                        "icon": "wc",
+                        "link": reverse_lazy("admin:usuarios_genero_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                    {
+                        "title": "Registros de Tension",
+                        "icon": "monitor_heart",
+                        "link": reverse_lazy("admin:usuarios_tension_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    }
+                ]    
+            },
+            {
                 "title": "Medicos",
                 "icon": "user",
                 "separatror": True,
@@ -237,6 +259,12 @@ UNFOLD = {
                         "title": "Medicos",
                         "icon": "medical_services",
                         "link": reverse_lazy("admin:medicos_medico_changelist"),
+                        "permission": lambda request: request.user.is_superuser,
+                    },
+                    {
+                        "title": "Consultas",
+                        "icon": "book",
+                        "link": reverse_lazy("admin:medicos_consulta_changelist"),
                         "permission": lambda request: request.user.is_superuser,
                     },
                     {

@@ -11,7 +11,7 @@
     "migrate-db": "cd SistemaMedico/backend & python manage.py makemigrations & python manage.py migrate",
     "create-superuser": "cd SistemaMedico/backend & python manage.py createsuperuser",
     "install-dependencies": "pip install -r requeriments.txt & cd SistemaMedico/appSistemaMedico/ & npm install",
-    "install-tailwind-dependencies":"cd SistemaMedico/backend/tailwind_app/static_src & npm install",
+    "install-tailwind-dependencies": "cd SistemaMedico/backend/tailwind_app/static_src & npm install",
     "build-tailwind": "cd SistemaMedico/backend/tailwind_app/static_src & npm run build",
     "start-tailwind": "cd SistemaMedico/backend/tailwind_app/static_src & npm run start",
     "seed-db": "cd SistemaMedico/backend & python manage.py seed"
@@ -23,5 +23,6 @@
   },
   "devDependencies": {
     "concurrently": "^9.0.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
